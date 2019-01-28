@@ -674,7 +674,7 @@ int smithy_turn(int currentPlayer, struct gameState * state, int handPos) {
    
    //discard card from hand
    discardCard(handPos, currentPlayer, state, 0);
-   return 1;
+   return -1;
 }
 
 int village_turn(int currentPlayer, struct gameState * state, int handPos) {
@@ -719,7 +719,7 @@ int remodel_turn(int currentPlayer, struct gameState * state, int handPos,
 
 int council_room_turn(int currentPlayer, struct gameState * state, int handPos) {
    //+4 Cards
-   for (int i = 0; i < 4; i++)
+   for (int i = 0; i <= 4; i++)
    {
       drawCard(currentPlayer, state);
    }
