@@ -659,7 +659,7 @@ int adventurer_turn(int z, int drawntreasure, int currentPlayer, int temphand[],
       }
    }
    while(z-1>=0){
-      state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
+      state->discard[currentPlayer][state->discardCount[currentPlayer++]]=temphand[z-1]; // discard all cards in play that have been drawn
       z=z-1;
    }
    return 0;
@@ -674,7 +674,7 @@ int smithy_turn(int currentPlayer, struct gameState * state, int handPos) {
    
    //discard card from hand
    discardCard(handPos, currentPlayer, state, 0);
-   return 0;
+   return 1;
 }
 
 int village_turn(int currentPlayer, struct gameState * state, int handPos) {
@@ -685,7 +685,7 @@ int village_turn(int currentPlayer, struct gameState * state, int handPos) {
    state->numActions = state->numActions + 2;
    
    //discard played card from hand
-   discardCard(handPos, currentPlayer, state, 0);
+   discardCard(handPos + 1, currentPlayer, state, 0);
    return 0;
 }
 
@@ -698,7 +698,7 @@ int remodel_turn(int currentPlayer, struct gameState * state, int handPos,
       return -1;
    }
    
-   gainCard(choice2, state, 0, currentPlayer);
+   gainCard(choice1, state, 0, currentPlayer);
    
    //discard card from hand
    discardCard(handPos, currentPlayer, state, 0);
