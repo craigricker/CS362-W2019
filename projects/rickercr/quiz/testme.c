@@ -3,24 +3,26 @@
 #include<stdlib.h>
 #include<time.h>
 
-#define MAX_NUMBER 127
-#define MIN_NUMBER 32
+#define MAX_NUMBER 122
+#define MIN_NUMBER 97 
 #define INPUT_LENGTH 6
 
 char inputChar()
 {
 	char choices[] = {'[', '(', '{', ' ',
 		'a', 'x', '}', ')', ']', 'b', 'c', 'd'};
-	return choices[rand()
+	return choices[rand() % (11)];
 }
 
 char *inputString()
 {
-    char created[INPUT_LENGTH];
-    for (int i = 0; i < input_length - 1; i++) {
+    static char created[INPUT_LENGTH];
+    for (int i = 0; i < INPUT_LENGTH; i++) {
+	created[i] = rand() % (MAX_NUMBER - MIN_NUMBER) + MIN_NUMBER;
 
     }
-    return "";
+    created[5] = '\0';
+    return created;
 }
 
 void testme()
