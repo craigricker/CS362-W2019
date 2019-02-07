@@ -9,9 +9,7 @@
 
 char inputChar()
 {
-	char choices[] = {'[', '(', '{', ' ',
-		'a', 'x', '}', ')', ']', 'b', 'c', 'd'};
-	return choices[rand() % (11)];
+    return rand() % (126 - 32 + 1) + 32;
 }
 
 char *inputString()
