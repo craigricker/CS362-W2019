@@ -1,4 +1,4 @@
-kjjCFLAGS= -Wall -fpic -coverage -lm -std=c99
+CFLAGS= -Wall -fpic -coverage -lm -std=c99
 
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)
@@ -47,7 +47,32 @@ unittest3: all unittest3.c
 unittest4: all unittest4.c
 	gcc -o unittest4 unittest4.c dominion.o rngs.o -g $(CFLAGS)
 
-unit_tests: unittest1 unittest2 unittest3 unittest4
+cardtest1: all cardtest1.c
+	gcc -o cardtest1 cardtest1.c dominion.o rngs.o -g $(CFLAGS)
+
+cardtest2: all cardtest2.c
+	gcc -o cardtest2 cardtest2.c dominion.o rngs.o -g $(CFLAGS)
+
+cardtest3: all cardtest3.c
+	gcc -o cardtest3 cardtest3.c dominion.o rngs.o -g $(CFLAGS)
+
+cardtest4: all cardtest4.c
+	gcc -o cardtest4 cardtest4.c dominion.o rngs.o -g $(CFLAGS)
+
+
+unittestresults: clean unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4
+	# This creates a blank file, even if it exists
+	> unittestresult.out
+	# Loop through, and output information for all tests
+	# Dirty trick to safe typing
+	for number in 1 2 3 4 ; do \
+		./unittest$$number >> unittestresult.out ; \
+		gcov dominion.c >> unittestresult.out ; \
+		cat dominion.c.gcov >> unittestresult.out ; \
+		./cardtest$$number >> unittestresult.out ; \
+		gcov dominion.c >> unittestresult.out ; \
+		cat dominion.c.gcov >> unittestresult.out ; \
+	done
 	
 
 clean:
