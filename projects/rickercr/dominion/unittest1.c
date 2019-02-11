@@ -12,10 +12,9 @@ int main() {
    int k[10] = {adventurer, council_room, feast, gardens,
       mine, remodel, smithy, village, baron, great_hall};
    struct gameState G;
-   int handSize = 10;
    int any_error = 0;
    int return_val;
-   int start = initializeGame(2, k, 3, &G);
+   initializeGame(2, k, 3, &G);
    printf("Testing \"isGameOver()\":\n");
    return_val = isGameOver(&G);
    

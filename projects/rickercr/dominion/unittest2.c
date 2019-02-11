@@ -11,11 +11,10 @@ int main() {
    int k[10] = {adventurer, council_room, feast, gardens,
       mine, remodel, smithy, village, baron, great_hall};
    struct gameState G;
-   int handSize = 10;
    int any_error = 0;
    int return_val;
    int start_player = initializeGame(4, k, 3, &G);
-   printf("Testing \"shuffle()\":\n");
+   printf("Testing \"whoseTurn()\":\n");
    
    return_val = whoseTurn(&G);
    
@@ -24,6 +23,13 @@ int main() {
    // is correct immediatly after game init
    if (return_val != start_player) {
       printf("Game incorrectly reporting start player after initialization\n");
+      any_error++;
+   }
+   
+   playCard(-1, -1, -1, -1, &G);
+   
+   if (return_val != start_player + 1) {
+      printf("Game incorrectly reporting player after a single turn\n");
       any_error++;
    }
    

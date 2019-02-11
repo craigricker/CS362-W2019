@@ -21,11 +21,8 @@ int main() {
    int k[10] = {adventurer, council_room, feast, gardens,
       mine, remodel, smithy, village, baron, great_hall};
    struct gameState G;
-   int handSize = 10;
-   int player = 0;
    int any_error = 0;
-   int return_val;
-   int start_player = initializeGame(4, k, 3, &G);
+   initializeGame(4, k, 3, &G);
    // Seed random
    srand(time(NULL));
    printf("Testing \"kingdomCards()\":\n");
@@ -34,8 +31,8 @@ int main() {
    
    int * old, * new_hand;
    int n_checks = 1000;
-   int n_same;
-   int same_order = 0;
+
+
    // Make an array same size as hand of player
    for (int i = 0; i < n_checks; i++) {
       // Generate random integer array of isze 10

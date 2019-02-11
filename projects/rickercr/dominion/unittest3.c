@@ -11,11 +11,10 @@ int main() {
    int k[10] = {adventurer, council_room, feast, gardens,
       mine, remodel, smithy, village, baron, great_hall};
    struct gameState G;
-   int handSize = 10;
    int player = 0;
    int any_error = 0;
    int return_val;
-   int start_player = initializeGame(4, k, 3, &G);
+   initializeGame(4, k, 3, &G);
    printf("Testing \"shuffle()\":\n");
    
    return_val = shuffle(player, &G);

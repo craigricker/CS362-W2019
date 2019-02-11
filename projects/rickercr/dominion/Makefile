@@ -67,10 +67,10 @@ unittestresults: clean unittest1 unittest2 unittest3 unittest4 cardtest1 cardtes
 	# Dirty trick to safe typing
 	for number in 1 2 3 4 ; do \
 		./unittest$$number >> unittestresult.out ; \
-		gcov dominion.c >> unittestresult.out ; \
+		gcov -b dominion.c >> unittestresult.out ; \
 		cat dominion.c.gcov >> unittestresult.out ; \
 		./cardtest$$number >> unittestresult.out ; \
-		gcov dominion.c >> unittestresult.out ; \
+		gcov -b  dominion.c >> unittestresult.out ; \
 		cat dominion.c.gcov >> unittestresult.out ; \
 	done
 	

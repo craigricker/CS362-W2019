@@ -48,7 +48,7 @@ int main() {
    int n_cards = G.handCount[currentPlayer];
    int n_discard = G.discardCount[currentPlayer];
    int treasure = n_treasure(currentPlayer, &G);
-   adventurer_turn(currentPlayer, &G);
+   cardEffect(adventurer, 0, 0, 0, &G, 0, NULL);
    if (n_cards + 2 != G.handCount[currentPlayer]) {
       printf("Did not successfully draw 2 cards\n");
       any_error++;
