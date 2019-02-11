@@ -696,9 +696,11 @@ int village_turn(int currentPlayer, struct gameState * state, int handPos) {
 int remodel_turn(int currentPlayer, struct gameState * state, int handPos,
                  int choice1, int choice2) {
    int j = state->hand[currentPlayer][choice1];  //store card we will trash
-   
+//   printf("You want to discard card %d, and it costs %d\n", state->hand[currentPlayer][choice1], getCost(state->hand[currentPlayer][choice1]));
+//   printf("You are trying to get card %d, and it costs %d\n", choice2, getCost(choice2));
    if ( (getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2) )
    {
+//      printf("TThis costs too much!\n");
       return -1;
    }
    

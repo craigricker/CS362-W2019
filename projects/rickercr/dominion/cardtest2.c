@@ -10,20 +10,9 @@
 
 
 int main() {
-   
-   
-   /*
-    States to test/check:
-    Return is 0
-    Full deck
-    empty deck
-    */
-   
-   int n_treas, n_drawn;
-   
-   int temp[MAX_HAND];
+
    int seed = 1000;
-   int numPlayers = 2;
+   int numPlayers = 4;
    struct gameState G, oldG;
    int any_error = 0;
    int k[10] = {minion, mine, adventurer, great_hall,
@@ -32,7 +21,7 @@ int main() {
    initializeGame(numPlayers, k, seed, &G);
    // Copy game state for comparisons
    memcpy(&oldG, &G, sizeof(struct gameState));
-   int currentPlayer = 0;
+
    
 
    // Check to make sure you draw only two additional cards
@@ -42,9 +31,11 @@ int main() {
       for (int j = 0; j < seed; j++) {
          // Reset game state
          memcpy(&G, &oldG, sizeof(struct gameState));
+         G.whoseTurn = i;
          n_cards = G.handCount[i];
          n_discard = G.discardCount[i];
-         smithy_turn(i, &G, 0);
+//         smithy_turn(i, &G, 0);
+         cardEffect(smithy, 0, 0, 0, &G, 0, NULL);
          if (n_discard + 1 != G.discardCount[i] &&
              n_cards + 3 != G.handCount[i]) {
             printf("Discard and hand count incorrect.\n");

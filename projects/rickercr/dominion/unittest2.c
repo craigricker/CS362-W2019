@@ -27,8 +27,9 @@ int main() {
    }
    
    playCard(-1, -1, -1, -1, &G);
+   endTurn(&G);
    
-   if (return_val != start_player + 1) {
+   if (whoseTurn(&G) != start_player + 1) {
       printf("Game incorrectly reporting player after a single turn\n");
       any_error++;
    }
