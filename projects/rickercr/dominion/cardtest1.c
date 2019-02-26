@@ -28,7 +28,6 @@ int main() {
    printf("Testing Adventure card\n");
    
 
-   
    for (int currentPlayer = 0; currentPlayer < numPlayers;
         currentPlayer++) {
       initializeGame(numPlayers, k, seed, &G);

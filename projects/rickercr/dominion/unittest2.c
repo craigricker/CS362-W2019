@@ -21,6 +21,7 @@ int main() {
    
    // Testing to ensure the player number
    // is correct immediatly after game init
+   printf("Checking start player at game init\n");
    if (return_val != start_player) {
       printf("Game incorrectly reporting start player after initialization\n");
       any_error++;
@@ -28,7 +29,7 @@ int main() {
    
    playCard(-1, -1, -1, -1, &G);
    endTurn(&G);
-   
+   print("Checking whoseTurn after card is player\n");
    if (whoseTurn(&G) != start_player + 1) {
       printf("Game incorrectly reporting player after a single turn\n");
       any_error++;

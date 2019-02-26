@@ -18,6 +18,7 @@ int main() {
    printf("Testing \"isGameOver()\":\n");
    return_val = isGameOver(&G);
    
+   printf("Testing game doesn't report as stopped at begining.\n");
    if (return_val != 0) {
       printf("Game incorrectly reporting as over!");
       any_error++;
@@ -38,6 +39,7 @@ int main() {
    int numSmithies = 0;
    int numAdventurers = 0;
    
+   printf("Testing game ends correctly after game completion.");
    while (!isGameOver(&G)) {
       money = 0;
       smithyPos = -1;

@@ -17,6 +17,7 @@ int main() {
    initializeGame(4, k, 3, &G);
    printf("Testing \"shuffle()\":\n");
    
+   printf("Testing shuffle return condition after init\n");
    return_val = shuffle(player, &G);
    
    
@@ -32,6 +33,7 @@ int main() {
    int same_order = 0;
    // Make an array same size as hand of player
    old_hand = malloc(sizeof(int) * G.deckCount[player]);
+   printf("Testing returns new order for all players\n");
    for (int i = 0; i < n_shuffles; i++) {
       // Copy old hand into new, shuffle, check if identical
       memcpy(old_hand, G.deck[player],
@@ -59,6 +61,7 @@ int main() {
    // Set the number of cards in a player's hand
    // to zero, and it should no longer succeeed
    G.deckCount[player] = 0;
+   printf("Checking deck with 1 card isn't shuffled\n");
    if (shuffle(player, &G) == 0) {
       printf("Shuffled an empty deck.\n");
       any_error++;

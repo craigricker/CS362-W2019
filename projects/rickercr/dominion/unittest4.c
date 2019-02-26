@@ -32,7 +32,7 @@ int main() {
    int * old, * new_hand;
    int n_checks = 1000;
 
-
+   printf("Checking kingdomCards() creates array in proper order\n");
    // Make an array same size as hand of player
    for (int i = 0; i < n_checks; i++) {
       // Generate random integer array of isze 10
