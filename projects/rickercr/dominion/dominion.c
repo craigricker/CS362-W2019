@@ -642,8 +642,12 @@ int getCost(int cardNumber)
 	
   return -1;
 }
-int adventurer_turn(int z, int drawntreasure, int currentPlayer, int temphand[],
-                    int cardDrawn, struct gameState * state ) {
+int adventurer_turn(int currentPlayer, struct gameState * state ) {
+   int z = 0;
+   int drawntreasure = 0;
+   int cardDrawn;
+   int temphand[MAX_HAND];// moved above the if statemen
+   
    while(drawntreasure<2){
       if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
          shuffle(currentPlayer, state);
@@ -692,9 +696,11 @@ int village_turn(int currentPlayer, struct gameState * state, int handPos) {
 int remodel_turn(int currentPlayer, struct gameState * state, int handPos,
                  int choice1, int choice2) {
    int j = state->hand[currentPlayer][choice1];  //store card we will trash
-   
+//   printf("You want to discard card %d, and it costs %d\n", state->hand[currentPlayer][choice1], getCost(state->hand[currentPlayer][choice1]));
+//   printf("You are trying to get card %d, and it costs %d\n", choice2, getCost(choice2));
    if ( (getCost(state->hand[currentPlayer][choice1]) + 2) > getCost(choice2) )
    {
+//      printf("TThis costs too much!\n");
       return -1;
    }
    
@@ -766,8 +772,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-       return adventurer_turn(z, drawntreasure, currentPlayer, temphand,
-                              cardDrawn, state);
+       return adventurer_turn(currentPlayer, state);
 			
     case council_room:
           return council_room_turn(currentPlayer, state, handPos);
