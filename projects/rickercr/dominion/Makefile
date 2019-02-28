@@ -37,3 +37,21 @@ all: playdom player
 
 clean:
 	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
+
+
+randomtestadventurer: playdom randomtestadventurer.c
+	gcc dominion.o rngs.o randomtestadventurer.c -o randomtestadventurer $(CFLAGS)
+
+randomtestcard1: playdom randomtestcard1.c
+	gcc dominion.o rngs.o randomtestcard1.c -o randomtestcard1 $(CFLAGS)
+
+randomtestcard2: playdom randomtestcard2.c
+	gcc dominion.o rngs.o randomtestcard2.c -o randomtestcard2 $(CFLAGS)
+
+randomresults: randomtestadventurer randomtestcard1 randomtestcard2
+	#./randomtestadventurer >> randomtestadventurer.out
+	#gcov -b randomtestadventurer.c >> randomtestadventurer.out
+	./randomtestcard1> randomtestcard1.out
+	gcov -b randomtestcard1.c >> randomtestcard1.out
+	./randomtestcard2> randomtestcard2.out
+	gcov -b randomtestcard2.c >> randomtestcard2.out
