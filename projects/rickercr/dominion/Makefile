@@ -50,8 +50,8 @@ randomtestcard2: playdom randomtestcard2.c
 
 randomresults: randomtestadventurer randomtestcard1 randomtestcard2
 	#./randomtestadventurer >> randomtestadventurer.out
-	#gcov -b randomtestadventurer.c >> randomtestadventurer.out
+	#gcov -b dominion.c >> randomtestadventurer.out
 	./randomtestcard1> randomtestcard1.out
-	gcov -b randomtestcard1.c >> randomtestcard1.out
+	gcov -b dominion.c >> randomtestcard1.out
 	./randomtestcard2> randomtestcard2.out
-	gcov -b randomtestcard2.c >> randomtestcard2.out
+	gcov -b dominion.c >> randomtestcard2.out
