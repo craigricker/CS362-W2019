@@ -29,7 +29,7 @@ int main() {
    
    playCard(-1, -1, -1, -1, &G);
    endTurn(&G);
-   print("Checking whoseTurn after card is player\n");
+   printf("Checking whoseTurn after card is player\n");
    if (whoseTurn(&G) != start_player + 1) {
       printf("Game incorrectly reporting player after a single turn\n");
       any_error++;
