@@ -12,7 +12,6 @@
 
 int n_treasure(int currentPlayer, struct gameState * state,
                int hand) {
-   printf("In n_treasure\n");
    int drawnTreasure = 0;
    int cardDrawn = 0;
    int maxSearch;
@@ -30,7 +29,6 @@ int n_treasure(int currentPlayer, struct gameState * state,
       if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
          drawnTreasure++;
    }
-   printf("Exiting n_treasure\n");
    return drawnTreasure;
 }
 int main() {
@@ -51,9 +49,10 @@ int main() {
    printf("Testing Adventure card\n");
    
 
-   for (int loopN = 0; loopN < 5; loopN++) {
+   for (int loopN = 0; loopN < 100000; loopN++) {
+      any_error=0;
+      seed = (rand() % 10000) + 1000;
       struct gameState G;
-      printf("About to init game\n");
       initializeGame(numPlayers, k, seed, &G);
       currentPlayer = rand() % numPlayers;     // Max players
       G.whoseTurn = currentPlayer;
@@ -64,16 +63,15 @@ int main() {
       handSize = rand() % (deckSize + 1);
       G.deckCount[currentPlayer] = deckSize - handSize;
       G.handCount[currentPlayer] = handSize;
-      
+      // Need to ensure that the count is >= 2
+      G.supplyCount[copper] += 2;      
       
       treasureHand = n_treasure(currentPlayer, &G, 1);
       n_cards = G.handCount[currentPlayer];
       n_discard = G.discardCount[currentPlayer];
-      printf("Deck size: %d. Handsize: %d. Current player %d.\n",
-             deckSize, handSize, currentPlayer);
+
       // Play the actual card
       cardEffect(adventurer, 0, 0, 0, &G, 0, NULL);
-      printf("Finished cardEffect!\n");
 
       // Ensure that the player actually draws 2 cards
       if (n_cards + 2 != G.handCount[currentPlayer]) {
@@ -92,6 +90,11 @@ int main() {
          any_error++;
       }
       
+      if (any_error) {
+         printf("Failed with seed %d, player %d, decksize %d, and handsize %d\n", seed, currentPlayer, deckSize, handSize);
+      }
+      
+ 
 
    }
 

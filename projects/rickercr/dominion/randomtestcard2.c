@@ -23,7 +23,7 @@ int main() {
    printf("Testing Remodel card\n");
 
    
-   for (int runN = 0; runN < 5; runN++) {
+   for (int runN = 0; runN < 100000; runN++) {
       initializeGame(numPlayers, k, seed, &G);
       requestedCard = rand() %28;
       G.whoseTurn = rand() % numPlayers; ;
